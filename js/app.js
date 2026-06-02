@@ -18,10 +18,60 @@ class App {
     // Initialize tech effects first
     this.initTechEffects();
     
+    // Initialize theme
+    this.initTheme();
+    
     this.router.onRouteChange = (route) => this.renderPage(route);
     this.initCursor();
     this.initNavbar();
     this.initModal();
+  }
+
+  /* ---- THEME TOGGLE ---- */
+  initTheme() {
+    // Check saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = savedTheme || (systemDark ? 'dark' : 'light');
+    
+    this.setTheme(theme);
+    
+    // Bind toggle button
+    const toggleBtn = document.getElementById('themeToggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => this.toggleTheme());
+    }
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        this.setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Update particle opacity for light mode
+    const particleCanvas = document.querySelector('canvas');
+    if (particleCanvas) {
+      particleCanvas.style.opacity = theme === 'light' ? '0.3' : '0.6';
+    }
+    
+    // Update circuit pattern opacity for light mode
+    if (theme === 'light') {
+      document.body.style.setProperty('--circuit-opacity', '0.02');
+    } else {
+      document.body.style.setProperty('--circuit-opacity', '0.05');
+    }
+  }
+
+  toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    this.setTheme(newTheme);
   }
 
   /* ---- TECH EFFECTS ---- */
