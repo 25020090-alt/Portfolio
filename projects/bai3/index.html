@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 3: Ứng dụng Kỹ thuật Prompt Engineering</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem; line-height: 1.7; }
+    .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05); border: 1px solid rgba(15, 23, 42, 0.05); }
+    h1 { color: #4f46e5; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 700; text-align: center; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; }
+    .step { background: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid #4f46e5; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .step:hover { transform: translateX(4px); box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); }
+    .step h3 { color: #334155; margin-top: 0; margin-bottom: 1rem; font-size: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;}
+    .step p, .step li { color: #475569; margin: 0 0 0.5rem 0; }
+    .step ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .drive-link-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: linear-gradient(135deg, #00cec9 0%, #6c5ce7 100%); color: white; text-decoration: none; font-weight: 600; border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); font-size: 1.1rem; }
+    .drive-link-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4); background: linear-gradient(135deg, #00cec9 0%, #818cf8 100%); }
+    .prompt-box { background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-family: monospace; font-size: 0.95em; color: #3730a3; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top;}
+    th { background: #e2e8f0; color: #334155; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bài 3: Ứng dụng Kỹ thuật Prompt Engineering</h1>
+    <p class="subtitle">Sinh viên: <strong>Triệu Văn Duy</strong> — Mã SV: <strong>25020090</strong></p>
+
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <a href="https://docs.google.com/document/d/1gTkVH0cGSFf58vHO3WQ3LB4e73LGZ9C8/edit?usp=sharing&ouid=100318610550916958534&rtpof=true&sd=true" target="_blank" rel="noopener" class="drive-link-btn">
+        📄 Link bài tập
+      </a>
+    </div>
+
+    <div class="step">
+      <h3>1. Tóm tắt một bài đọc/tài liệu học thuật</h3>
+      <p><em>Mục tiêu: Tóm tắt một chương tài liệu dài về môn học lý luận.</em></p>
+      <div class="prompt-box">
+        <strong>Prompt cơ bản:</strong> Tóm tắt cho tôi đoạn tài liệu này. [Chèn nội dung văn bản vào đây]
+      </div>
+      <div class="prompt-box">
+        <strong>Prompt cải tiến:</strong> Hãy đọc và tóm tắt những ý chính của văn bản sau dưới dạng gạch đầu dòng. Tập trung vào việc làm nổi bật các khái niệm cốt lõi và kết luận cuối cùng của tác giả. [Chèn nội dung văn bản vào đây]
+      </div>
+      <div class="prompt-box">
+        <strong>Prompt nâng cao (Role prompting + Structure):</strong> Đóng vai là một giảng viên đại học. Hãy đọc đoạn trích tài liệu sau về Tư tưởng Hồ Chí Minh. Thực hiện các bước sau để tóm tắt:<br>
+        - Xác định 3 luận điểm chính của đoạn trích.<br>
+        - Tóm tắt mỗi luận điểm trong tối đa 2 câu ngắn gọn, dễ hiểu.<br>
+        - Đưa ra một ví dụ thực tiễn trong môi trường giáo dục để sinh viên năm nhất dễ hình dung về luận điểm đó. [Chèn nội dung văn bản vào đây]
+        
+      </div>
+      <img src="../../assets/images/bai3/anhB3.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>2. Giải thích một khái niệm phức tạp</h3>
+      <p><em>Mục tiêu: Khái niệm quan trọng trong môn Cấu trúc dữ liệu và giải thuật (DSA).</em></p>
+      <div class="prompt-box">
+        <strong>Prompt cơ bản:</strong> Giải thích cho tôi cấu trúc dữ liệu Cây nhị phân tìm kiếm (Binary Search Tree) là gì.
+      </div>
+      <div class="prompt-box">
+        <strong>Prompt cải tiến:</strong> Giải thích chi tiết về cấu trúc dữ liệu Binary Search Tree (BST). Hãy nêu rõ định nghĩa, các đặc điểm chính, và phân tích độ phức tạp thời gian của các thao tác cơ bản như tìm kiếm, thêm và xóa một node.
+      </div>
+      <div class="prompt-box">
+        <strong>Prompt nâng cao (Role prompting + Chain-of-thought + Few-shot):</strong> Đóng vai là một kỹ sư phần mềm với 15 năm kinh nghiệm đang hướng dẫn sinh viên thực tập. Nhiệm vụ của bạn là giải thích cấu trúc dữ liệu Binary Search Tree (BST). Hãy suy nghĩ và trình bày theo từng bước sau:<br>
+        - Bước 1: Đưa ra định nghĩa dễ hiểu nhất về BST, có thể so sánh nó với cách tìm kiếm từ trong một cuốn từ điển.<br>
+        - Bước 2: Trình bày các quy tắc cốt lõi (node trái, node phải) của BST.<br>
+        - Bước 3: Cung cấp một ví dụ minh họa từng bước khi chèn lần lượt các số: 5, 3, 7, 2, 4 vào một cây rỗng.<br>
+        - Bước 4: Chỉ ra trường hợp xấu nhất (worst-case) của BST khi dữ liệu đầu vào đã được sắp xếp và gợi ý cách khắc phục vấn đề này.
+        
+      </div>
+      <img src="../../assets/images/bai3/anhbb33.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>3. Tạo bộ câu hỏi ôn tập cho một chủ đề</h3>
+      <p><em>Mục tiêu: Áp dụng cho việc ôn thi môn Đại số tuyến tính.</em></p>
+      <div class="prompt-box">
+        <strong>Prompt cơ bản:</strong> Tạo cho tôi một vài câu hỏi để ôn tập môn Đại số tuyến tính.
+      </div>
+      <div class="prompt-box">
+        <strong>Prompt cải tiến:</strong> Tạo một bộ gồm 10 câu hỏi để ôn thi giữa kỳ môn Đại số tuyến tính, tập trung vào chủ đề Không gian vector và Ma trận nghịch đảo. Cung cấp kèm đáp án chi tiết và giải thích ngắn gọn cho mỗi câu.
+      </div>
+      <div class="prompt-box">
+        <strong>Prompt nâng cao (Role prompting + Constraints + Step-by-step):</strong> Đóng vai là người ra đề thi tại một trường đại học kỹ thuật. Hãy tạo một bộ câu hỏi ôn tập môn Đại số tuyến tính với cấu trúc sau:<br>
+        - Phần 1: 3 câu hỏi trắc nghiệm kiểm tra lý thuyết nền tảng về tính độc lập tuyến tính và cơ sở của không gian vector. Đưa ra 4 đáp án A, B, C, D và chỉ định đáp án đúng.<br>
+        - Phần 2: 2 bài tập tự luận yêu cầu tính toán ma trận nghịch đảo cỡ 3x3 và tìm trị riêng, vector riêng. Ràng buộc: Với mỗi bài tập tự luận, hãy trình bày từng bước giải (step-by-step) thật chi tiết để sinh viên có thể tự đối chiếu kết quả tính toán bằng tay của mình. Đảm bảo mức độ khó tương đương với đề thi cuối kỳ.
+      </div>
+      <img src="../../assets/images/bai3/b3333.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>Bảng Phân Tích Đánh Giá</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tác vụ học tập</th>
+            <th>Loại Prompt</th>
+            <th>Mức độ bám sát yêu cầu</th>
+            <th>Độ chi tiết & Chất lượng nội dung</th>
+            <th>Khả năng kiểm soát định dạng</th>
+            <th>Đánh giá chung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3"><strong>Tóm tắt tài liệu</strong></td>
+            <td>Cơ bản</td>
+            <td>Trung bình. Thường tóm tắt quá ngắn hoặc bỏ sót ý chính.</td>
+            <td>Thấp. Câu văn chung chung, thiếu điểm nhấn.</td>
+            <td>Thấp. AI tự quyết định định dạng (thường là đoạn dài).</td>
+            <td>Không tối ưu cho học thuật, tốn thời gian đọc lại.</td>
+          </tr>
+          <tr>
+            <td>Cải tiến</td>
+            <td>Tốt. Bắt được các từ khóa cốt lõi của văn bản.</td>
+            <td>Khá. Các ý được tách bạch rõ ràng.</td>
+            <td>Tốt. Trình bày đúng dạng gạch đầu dòng theo yêu cầu.</td>
+            <td>Hiệu quả để nắm bắt thông tin nhanh.</td>
+          </tr>
+          <tr>
+            <td>Nâng cao</td>
+            <td>Rất tốt. Đảm bảo đúng trọng tâm lý luận.</td>
+            <td>Rất cao. Có sự liên kết thực tiễn thông qua ví dụ.</td>
+            <td>Rất tốt. Tuân thủ nghiêm ngặt cấu trúc 3 bước đề ra.</td>
+            <td>Hoàn hảo cho sinh viên cần hiểu sâu và vận dụng.</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Giải thích khái niệm (DSA)</strong></td>
+            <td>Cơ bản</td>
+            <td>Khá. Đưa ra được định nghĩa chuẩn SGK.</td>
+            <td>Thấp. Thiếu tính ứng dụng và phân tích độ phức tạp.</td>
+            <td>Thấp. Trình bày liền mạch, khó theo dõi.</td>
+            <td>Chỉ phù hợp để tra cứu nhanh bề mặt.</td>
+          </tr>
+          <tr>
+            <td>Cải tiến</td>
+            <td>Tốt. Đầy đủ khái niệm và các thao tác cơ bản.</td>
+            <td>Khá. Có đề cập đến Big O (độ phức tạp thời gian).</td>
+            <td>Khá. Cấu trúc rõ ràng hơn.</td>
+            <td>Đủ để ôn tập lý thuyết cơ bản.</td>
+          </tr>
+          <tr>
+            <td>Nâng cao</td>
+            <td>Rất tốt. Giọng văn hướng dẫn dễ hiểu, sư phạm.</td>
+            <td>Rất cao. Chỉ ra được cả trường hợp xấu nhất (worst-case).</td>
+            <td>Rất tốt. Trình bày theo từng bước (Step 1, 2, 3...) logic.</td>
+            <td>Giúp sinh viên hiểu tận gốc rễ vấn đề như có mentor.</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Tạo bộ câu hỏi (Toán)</strong></td>
+            <td>Cơ bản</td>
+            <td>Trung bình. Thường quá dễ hoặc không sát đại học.</td>
+            <td>Thấp. Chỉ có câu hỏi, không có giải thích.</td>
+            <td>Thấp. Hỗn lộn giữa trắc nghiệm và tự luận.</td>
+            <td>Giá trị sử dụng thấp.</td>
+          </tr>
+          <tr>
+            <td>Cải tiến</td>
+            <td>Tốt. Đúng chủ đề Không gian vector & Ma trận.</td>
+            <td>Khá. Có đáp án đi kèm để đối chiếu.</td>
+            <td>Khá. Số lượng và phạm vi câu hỏi được kiểm soát.</td>
+            <td>Dùng tốt để tự luyện tập nhanh.</td>
+          </tr>
+          <tr>
+            <td>Nâng cao</td>
+            <td>Rất tốt. Độ khó phù hợp đề thi đại học kỹ thuật.</td>
+            <td>Rất cao. Bài giải tự luận chi tiết từng bước tính toán.</td>
+            <td>Rất tốt. Phân tách rõ phần trắc nghiệm và tự luận.</td>
+            <td>Trở thành một bài thi thử hoàn chỉnh và chất lượng.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step">
+      <h3>4. Phân tích lý do tại sao prompt nâng cao hiệu quả hơn</h3>
+      <p>Sự khác biệt về chất lượng đầu ra giữa các prompt nằm ở cách con người điều hướng tư duy của AI. Prompt cơ bản thất bại vì nó giao toàn quyền quyết định cho máy móc, dẫn đến những câu trả lời mang tính rập khuôn và bề mặt. Trong khi đó, prompt nâng cao hiệu quả vượt trội nhờ áp dụng các kỹ thuật sau:</p>
+      <ul>
+        <li><strong>Thiết lập bối cảnh chuyên môn (Role Prompting):</strong> Khi yêu cầu AI "đóng vai giảng viên" hay "kỹ sư 15 năm kinh nghiệm", em đang thu hẹp không gian tìm kiếm dữ liệu của mô hình. Thay vì lấy thông tin từ Wikipedia chung chung, AI sẽ ưu tiên sử dụng ngôn từ, thuật ngữ và góc nhìn chuyên ngành, giúp câu trả lời mang tính hàn lâm và chính xác hơn.</li>
+        <li><strong>Ép buộc tư duy tuần tự (Chain-of-Thought):</strong> Đối với các môn kỹ thuật như Lập trình hay Toán học, AI rất dễ bị "ảo giác" (hallucination) và tính toán sai nếu bị yêu cầu đưa ra kết quả cuối cùng ngay lập tức. Việc yêu cầu "trình bày từng bước" (step-by-step) buộc AI phải phân tích logic tuần tự, từ đó giảm thiểu tối đa sai sót.</li>
+        <li><strong>Thiết lập ràng buộc (Constraints):</strong> Prompt nâng cao chỉ định rõ định dạng (gạch đầu dòng, số lượng câu hỏi, cấu trúc đề thi). Điều này giúp loại bỏ những nội dung thừa thãi, tối ưu hóa thời gian đọc hiểu và định hình kết quả ngay từ đầu.</li>
+        <li><strong>Kết nối thực tiễn (Contextualization):</strong> Yêu cầu cung cấp ví dụ hoặc xử lý các trường hợp góc (edge cases) giúp AI chuyển từ việc "trả bài" lý thuyết sang việc giải thích có tính ứng dụng, sát với thực tế.</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <h3>5. Tổng hợp các nguyên tắc và mẹo viết prompt hiệu quả (Phần 5 của báo cáo)</h3>
+      <p>Từ các thử nghiệm trên, em có thể đúc kết lại các nguyên tắc cốt lõi sau để đưa vào phần kết luận của báo cáo:</p>
+      <ul>
+        <li><strong>Nguyên tắc "Đúng vai - Đúng việc" (Role & Objective):</strong> Luôn bắt đầu bằng việc xác định tư cách của AI (là chuyên gia, giảng viên hay lập trình viên senior) và mục tiêu cụ thể của công việc. Điều này quyết định chất lượng và văn phong của đầu ra.</li>
+        <li><strong>Nguyên tắc "Càng chi tiết, càng ít sai lệch" (Specificity):</strong> Đừng yêu cầu "Hãy tóm tắt", hãy yêu cầu "Hãy tóm tắt thành 3 ý chính, mỗi ý không quá 50 từ, tập trung vào khái niệm X". Cung cấp đầy đủ bối cảnh, giới hạn và định dạng mong muốn.</li>
+        <li><strong>Nguyên tắc "Tư duy từng bước" (Step-by-step thinking):</strong> Luôn sử dụng từ khóa "Hãy suy nghĩ từng bước" hoặc chia cấu trúc yêu cầu thành Bước 1, Bước 2 đối với các bài toán logic, toán học và lập trình thuật toán.</li>
+        <li><strong>Nguyên tắc "Cung cấp mẫu" (Few-shot prompting):</strong> Nếu muốn AI trả lời theo một khuôn mẫu cụ thể, hãy đưa cho nó 1-2 ví dụ minh họa ngay trong prompt trước khi yêu cầu nó tự làm các phần tiếp theo.</li>
+        <li><strong>Nguyên tắc "Lặp lại và Tinh chỉnh" (Iterative Refinement):</strong> Coi prompt đầu tiên chỉ là bản nháp. Nếu AI trả lời sai hoặc thiếu ý, không viết lại từ đầu mà hãy phản hồi trực tiếp vào lỗi sai đó.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

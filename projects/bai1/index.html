@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 1: Quản lý Tệp tin & Thư mục</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      /* Slate 50 */
+      color: #0f172a;
+      /* Slate 900 */
+      padding: 2rem;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+    }
+
+    h1 {
+      color: #4f46e5;
+      /* Indigo 600 */
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    .step {
+      background: #f1f5f9;
+      /* Slate 100 */
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 5px solid #4f46e5;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .step:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .step h3 {
+      color: #334155;
+      /* Slate 700 */
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .step p {
+      color: #475569;
+      /* Slate 600 */
+      margin: 0 0 0.5rem 0;
+    }
+
+    .highlight {
+      background: rgba(79, 70, 229, 0.1);
+      color: #4f46e5;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.95em;
+    }
+
+    .step-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1rem auto 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .drive-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #00cec9 0%, #6c5ce7 100%);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+      font-size: 1.1rem;
+    }
+
+    .drive-link-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+      background: linear-gradient(135deg, #00cec9 0%, #818cf8 100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bài 1: Quản lý Tệp tin & Thư mục</h1>
+    <p class="subtitle">Sinh viên: <strong>Triệu Văn Duy</strong> — Mã SV: <strong>25020090</strong></p>
+
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <a href="https://drive.google.com/file/d/1qXr4gxpAUF8Y7ZN85WaDXFg9dqeYa44-/view?usp=sharing" target="_blank" rel="noopener" class="drive-link-btn">
+        📄 Link bài tập
+      </a>
+    </div>
+
+    <div class="step">
+      <h3>Bước 1: Khởi tạo không gian làm việc gốc</h3>
+      <p>Điều hướng đến thư mục <span class="highlight">Documents</span> trên máy tính. Tạo một thư mục mới và đặt tên
+        có tính định danh cao: <span class="highlight">ThucHanh_TrieuVanDuy_25020090</span>.</p>
+      <!-- ✏️ CHÈN ẢNH BƯỚC 1 Ở ĐÂY: Thay 'anh-buoc-1.png' bằng tên file ảnh của bạn -->
+      <img src="../../assets/images/bai1/anh1.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh2.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh3.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>Bước 2: Tạo mới và đổi tên tệp tin (File Naming)</h3>
+      <p>Bên trong thư mục gốc vừa tạo, tiến hành tạo một tệp văn bản mới (Text Document) với tên ban đầu là <span
+          class="highlight">GhiChu.txt</span>.</p>
+      <p>Sử dụng tính năng Rename để đổi tên tệp này thành <span class="highlight">GhiChuQuanTrong.txt</span> nhằm mô tả
+        đúng tính chất của tệp.</p>
+      <!-- ✏️ CHÈN ẢNH BƯỚC 2 Ở ĐÂY -->
+      <img src="../../assets/images/bai1/anh4.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh5.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh6.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>Bước 3: Phân cấp thư mục và di chuyển dữ liệu</h3>
+      <p>Tạo thêm một thư mục con với tên <span class="highlight">TaiLieu</span> nằm bên trong thư mục <span
+          class="highlight">ThucHanh_TrieuVanDuy_25020090</span> để rèn luyện kỹ năng phân cấp dữ liệu.</p>
+      <p>Thực hiện thao tác di chuyển tệp <span class="highlight">GhiChuQuanTrong.txt</span> từ thư mục gốc vào trong
+        thư mục con <span class="highlight">TaiLieu</span>.</p>
+      <!-- ✏️ CHÈN ẢNH BƯỚC 3 Ở ĐÂY -->
+      <img src="../../assets/images/bai1/anh7.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh8.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>Bước 4: Thao tác xóa vĩnh viễn (Hard Delete)</h3>
+      <p>Khởi tạo một tệp văn bản khác có tên <span class="highlight">DiChuyen.txt</span>.</p>
+      <p>Để giải phóng dung lượng triệt để, tiến hành xóa vĩnh viễn tệp <span class="highlight">DiChuyen.txt</span> (sử
+        dụng tổ hợp phím <strong>Shift+Delete</strong> hoặc xóa vĩnh viễn từ menu), hệ thống đã hiển thị hộp thoại xác
+        nhận <em>"Are you sure you want to permanently delete this file?"</em> và thao tác đã được hoàn tất.</p>
+      <!-- ✏️ CHÈN ẢNH BƯỚC 4 Ở ĐÂY -->
+      <<img src="../../assets/images/bai1/anh9.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh10.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh11.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh12.png" alt="Minh họa Bước 1" class="step-img">
+
+    </div>
+
+    <div class="step">
+      <h3>Bước 5: Xóa an toàn và Khôi phục dữ liệu từ Thùng rác (Recycle Bin)</h3>
+      <p>Thực hiện lệnh xóa thông thường (Delete) đối với tệp <span class="highlight">GhiChuQuanTrong.txt</span>, tệp
+        này sau đó được chuyển vào <strong>Recycle Bin</strong>.</p>
+      <p>Mở Recycle Bin, xác định đúng tệp đã xóa. Nhấp chuột phải vào tệp và chọn lệnh <strong>Restore</strong> để khôi
+        phục dữ liệu.</p>
+      <p>Tệp <span class="highlight">GhiChuQuanTrong.txt</span> đã được khôi phục thành công và quay trở lại đúng vị trí
+        ban đầu trong thư mục <span class="highlight">TaiLieu</span>.</p>
+      <!-- ✏️ CHÈN ẢNH BƯỚC 5 Ở ĐÂY -->
+      <img src="../../assets/images/bai1/anh13.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh14.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh15.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh16.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai1/anh17.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+  </div>
+</body>
+
+</html>

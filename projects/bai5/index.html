@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 5: Ứng dụng AI thiết kế Infographic OOP</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem; line-height: 1.7; }
+    .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05); border: 1px solid rgba(15, 23, 42, 0.05); }
+    h1 { color: #4f46e5; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 700; text-align: center; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; }
+    .step { background: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid #4f46e5; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .step:hover { transform: translateX(4px); box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); }
+    .step h3 { color: #334155; margin-top: 0; margin-bottom: 1rem; font-size: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;}
+    .step p, .step li { color: #475569; margin: 0 0 0.5rem 0; }
+    .step ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .drive-link-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: linear-gradient(135deg, #00cec9 0%, #6c5ce7 100%); color: white; text-decoration: none; font-weight: 600; border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); font-size: 1.1rem; }
+    .drive-link-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4); background: linear-gradient(135deg, #00cec9 0%, #818cf8 100%); }
+    .prompt-box { background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-family: monospace; font-size: 0.95em; color: #3730a3; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bài 5: Ứng dụng AI thiết kế Infographic OOP</h1>
+    <p class="subtitle">Sinh viên: <strong>Triệu Văn Duy</strong> — Mã SV: <strong>25020090</strong></p>
+
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <a href="https://docs.google.com/document/d/1xTvxLxFO-GiriiSjWJFbNRLaOCqLoEht/edit?usp=sharing&ouid=100318610550916958534&rtpof=true&sd=true" target="_blank" rel="noopener" class="drive-link-btn">
+        📄 Link bài tập
+      </a>
+    </div>
+
+    <div class="step">
+      <h3>1. Prompt Tạo Nội Dung Infographic</h3>
+      <div class="prompt-box">
+        "Đóng vai một chuyên gia lập trình Java, hãy viết nội dung cho một Infographic về 4 tính chất của OOP (Đóng gói, Kế thừa, Đa hình, Trừu tượng). Yêu cầu đối với mỗi tính chất: 1 câu định nghĩa thật ngắn gọn dễ hiểu, 1 ví dụ thực tế trong đời sống (ẩn dụ), và 1 đoạn code Java minh họa siêu ngắn (tối đa 3-4 dòng)."
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>2. Prompt Tạo Ảnh (Image Generation)</h3>
+      
+      <p><strong>• Tính Đóng gói (Encapsulation):</strong></p>
+      <div class="prompt-box">
+        "Tạo một hình minh họa 3D phong cách hiện đại: Một viên nang thuốc (capsule) trong suốt, bên trong viên nang chứa các dòng code màu xanh lá và các bánh răng cơ khí. Nền trắng hoàn toàn."
+      </div>
+
+      <p><strong>• Tính Kế thừa (Inheritance):</strong></p>
+      <div class="prompt-box">
+        "Tạo một hình minh họa 3D vector: Một cái cây công nghệ có các nhánh tỏa ra, từ thân cây mẹ truyền các luồng sáng data xuống các nhánh con. Màu chủ đạo là xanh dương công nghệ. Nền trắng hoàn toàn."
+      </div>
+
+      <p><strong>• Tính Đa hình (Polymorphism):</strong></p>
+      <div class="prompt-box">
+        "Tạo một icon 3D: Một con robot đang cầm trên tay nhiều dụng cụ khác nhau (cờ lê, búa, bút mỏ hàn) đang biến hình. Thể hiện sự linh hoạt. Nền trắng hoàn toàn."
+      </div>
+
+      <p><strong>• Tính Trừu tượng (Abstraction):</strong></p>
+      <div class="prompt-box">
+        "Tạo một hình minh họa 3D: Một chiếc điều khiển từ xa (remote) có một nút bấm to màu đỏ phát sáng, ẩn đi các vi mạch máy tính phức tạp bên dưới lớp vỏ. Nền trắng hoàn toàn."
+
+      </div>
+      <img src="../../assets/images/bai5/b51.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai5/b52.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai5/b53.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai5/b54.png" alt="Minh họa Bước 1" class="step-img">
+      <img src="../../assets/images/bai5/b55.png" alt="Minh họa Bước 1" class="step-img">
+    </div>
+
+    <div class="step">
+      <h3>3. Quá trình thiết kế & Kết quả</h3>
+      <p><strong>Kết quả sơ bộ:</strong> Xem các hình minh họa được render bằng công cụ tạo ảnh AI từ các prompt phía trên trong file đính kèm.</p>
+      <p><strong>Với Canva:</strong> Sử dụng các dữ liệu văn bản từ ChatGPT và hình ảnh minh họa từ Midjourney/DALL-E, kết hợp lại trên Canva để thiết kế bố cục Infographic cuối cùng.</p>
+      <p><strong>Kết quả cuối cùng:</strong> Vui lòng xem chi tiết Infographic hoàn thiện trong file Google Docs được đính kèm ở nút "Link bài tập" phía trên.</p>
+    </div>
+    <img src="../../assets/images/bai5/b56.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai5/b57.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai5/b58.png" alt="Minh họa Bước 1" class="step-img">
+    
+
+  </div>
+</body>
+</html>

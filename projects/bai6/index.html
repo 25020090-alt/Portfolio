@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 6: Đạo đức AI & Sử dụng AI Trách nhiệm</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem; line-height: 1.7; }
+    .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05); border: 1px solid rgba(15, 23, 42, 0.05); }
+    h1 { color: #4f46e5; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 700; text-align: center; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; }
+    .step { background: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid #4f46e5; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .step:hover { transform: translateX(4px); box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); }
+    .step h3 { color: #334155; margin-top: 0; margin-bottom: 1rem; font-size: 1.2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;}
+    .step h4 { color: #4f46e5; margin-bottom: 0.5rem; margin-top: 1.5rem;}
+    .step p, .step li { color: #475569; margin: 0 0 0.5rem 0; }
+    .step ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .drive-link-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: linear-gradient(135deg, #00cec9 0%, #6c5ce7 100%); color: white; text-decoration: none; font-weight: 600; border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); font-size: 1.1rem; }
+    .drive-link-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4); background: linear-gradient(135deg, #00cec9 0%, #818cf8 100%); }
+    .highlight { background: rgba(79, 70, 229, 0.1); color: #4f46e5; padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 500; }
+    .danger { background: rgba(225, 29, 72, 0.1); color: #e11d48; padding: 0.1rem 0.4rem; border-radius: 4px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bài 6: Đạo đức & Trách nhiệm khi sử dụng AI</h1>
+    <p class="subtitle">Sinh viên: <strong>Triệu Văn Duy</strong> — Mã SV: <strong>25020090</strong></p>
+
+    <div style="text-align: left; margin-bottom: 3rem;">
+      <a href="https://docs.google.com/document/d/1TYLFHNFeUA9gpsZri6ZLnfNsyUMhpkoO/edit?usp=sharing&ouid=100318610550916958534&rtpof=true&sd=true" target="_blank" rel="noopener" class="drive-link-btn">
+        📄 Link bài tập
+      </a>
+    </div>
+
+    <div class="step">
+      <h3>I. Môi trường học thuật và AI: "Tiếp nhận có kiểm soát"</h3>
+      <p>Khác với các khối ngành xã hội thường e dè với AI tạo văn bản, tại các trường đào tạo kỹ sư công nghệ hàng đầu, chính sách không thiên về "cấm đoán cực đoan". Nhà trường hiểu rõ rằng công cụ như ChatGPT hay GitHub Copilot đã trở thành tiêu chuẩn của ngành công nghiệp bên ngoài. Do đó, tinh thần chung là cho phép sử dụng AI như một công cụ hỗ trợ (gia sư ảo, trợ lý code), chứ không phải là người học thay.</p>
+      
+      <h4>1. Ranh giới giữa "Được phép" và "Không được phép"</h4>
+      <p><strong>Hành vi được khuyến khích:</strong></p>
+      <ul>
+        <li>Dùng AI để giải thích các khái niệm trừu tượng (ví dụ: nhờ AI vẽ ra một ví dụ thực tế để hiểu định lý trong Giải tích 1, 2 hay không gian vector trong Đại số tuyến tính).</li>
+        <li>Tìm kiếm bug (ném một đoạn stack trace báo lỗi của Spring Boot lên để hỏi nguyên nhân).</li>
+        <li>Sử dụng IDE có tích hợp AI để sinh các đoạn mã boilerplate (code thủ tục lặp đi lặp lại), comment code, hoặc tối ưu thuật toán.</li>
+      </ul>
+      <p><strong>Hành vi <span class="danger">nghiêm cấm tuyệt đối</span>:</strong></p>
+      <ul>
+        <li>Copy-paste nguyên xi một bài tập lớn hoặc đồ án mà không hiểu một dòng code nào.</li>
+        <li>Sử dụng AI để làm hộ các bài thi đánh giá năng lực độc lập (thi cuối kỳ tại phòng máy, thi viết tự luận).</li>
+        <li>Dùng AI viết báo cáo, tiểu luận và tự nhận mình là tác giả (vi phạm đạo văn).</li>
+      </ul>
+
+      <h4>2. Cách nhà trường "bắt bài" gian lận học thuật</h4>
+      <ul>
+        <li><strong>Hàng rào công nghệ:</strong> Nâng cấp các hệ thống kiểm tra đạo văn (như Turnitin) với module nhận diện văn bản do AI tạo ra (AI detection). Các tool check code similarity (so sánh độ tương đồng mã nguồn) cũng được tối ưu hóa.</li>
+        <li><strong>Vũ khí tối thượng - Vấn đáp bảo vệ (Oral Defense):</strong> Đây là "đặc sản" để trị gian lận AI. Em có thể dùng Copilot để code ra một luồng xử lý cực mượt cho hệ thống đấu giá, nhưng khi bảo vệ, giảng viên sẽ chỉ vào một class bất kỳ và hỏi: <em>"Tại sao em dùng cấu trúc dữ liệu này ở đây?"</em>, <em>"Nếu anh thay đổi đầu vào thế này thì luồng dữ liệu chạy đi đâu?"</em>. Nếu chỉ nhờ AI code hộ mà không tự mình thiết kế, sinh viên sẽ "đứng hình" và trượt ngay trên bục bảo vệ.</li>
+      </ul>
+
+      <h4>3. Ứng dụng AI từ hai phía (Giảng dạy và Nghiên cứu)</h4>
+      <ul>
+        <li><strong>Với giảng viên:</strong> Dùng AI để sinh ra các bộ test case đa dạng hơn cho hệ thống chấm bài tự động, cập nhật giáo trình nhanh chóng để theo kịp tốc độ phát triển công nghệ, và phân tích dữ liệu phổ điểm để tìm ra lỗ hổng kiến thức chung của lớp.</li>
+        <li><strong>Với nghiên cứu:</strong> AI giúp các nhóm nghiên cứu tóm tắt hàng trăm bài báo khoa học (Literature Review) trong vài phút, hỗ trợ trích xuất dữ liệu, hoặc tối ưu hóa các phương trình mô phỏng trong Vật lý đại cương.</li>
+      </ul>
+
+      <h4>4. Đánh giá hiệu quả: Bài toán "con dao hai lưỡi"</h4>
+      <ul>
+        <li><strong>Ưu điểm:</strong> Gia tốc quá trình học tập cực mạnh. Sinh viên không phải chờ đến giờ lên lớp để hỏi những lỗi ngớ ngẩn (syntax error). Nó giúp giải phóng thời gian khỏi việc "học vẹt" cú pháp ngôn ngữ (Java, JS) để tập trung vào tư duy thiết kế kiến trúc hệ thống và thuật toán cốt lõi.</li>
+        <li><strong>Hạn chế & Hệ quả:</strong> Gây ra hiện tượng "teo cơ tư duy". Một bộ phận sinh viên sinh ra tâm lý ỷ lại, mất khả năng tự debug từ đầu, tư duy logic yếu đi, và đặc biệt là hổng kiến thức nền tảng. Khi hệ thống gặp những lỗi ngầm phức tạp mà AI không nhìn ra được, sinh viên đó sẽ hoàn toàn bất lực.</li>
+      </ul>
+
+      <h4>5. Tác động định hình lại môi trường học thuật</h4>
+      <ul>
+        <li><strong>Với giảng viên:</strong> Vai trò dịch chuyển từ "người truyền thụ kiến thức" sang "huấn luyện viên/thẩm định viên". Đề bài tập lớn sẽ khó hơn, yêu cầu tích hợp nhiều hệ thống, tính thực tiễn cao hơn.</li>
+        <li><strong>Với sinh viên:</strong> Kỹ năng "Prompt Engineering" (nghệ thuật đặt câu hỏi cho AI) và năng lực đọc hiểu, thẩm định lại kết quả của AI trở thành kỹ năng sinh tồn bắt buộc.</li>
+      </ul>
+    </div>
+    <img src="../../assets/images/bai6/b61.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai6/b62.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai6/b63.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai6/b64.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai6/b65.png" alt="Minh họa Bước 1" class="step-img">
+    <img src="../../assets/images/bai6/b66.png" alt="Minh họa Bước 1" class="step-img">
+    
+
+    <div class="step">
+      <h3>II. Phân tích các vấn đề đạo đức liên quan đến việc sử dụng AI</h3>
+      
+      <h4>1. Ranh giới giữa hỗ trợ hợp lý và gian lận học thuật</h4>
+      <p>Ranh giới này thực chất rất mỏng manh và thường được quyết định bởi <strong>"sự nỗ lực nhận thức"</strong>.</p>
+      <ul>
+        <li><strong>Hỗ trợ hợp lý:</strong> Khi em vứt một đoạn stack trace báo lỗi <code>NullPointerException</code> dài loằng ngoằng lên AI để hỏi "Đoạn này lỗi do đâu, giải thích nguyên lý giúp tôi". AI đóng vai trò như một người mentor gỡ rối, em vẫn phải tự tay sửa code và hiểu được bản chất.</li>
+        <li><strong>Gian lận học thuật:</strong> Khi em ra lệnh "Viết cho tôi toàn bộ logic tính toán đấu giá trong class AuctionService" rồi copy/paste y nguyên nộp cho giảng viên mà không hiểu nổi tại sao luồng dữ liệu lại chạy như thế. Đây là hành vi tước đoạt cơ hội học tập của chính mình và lừa dối hệ thống.</li>
+      </ul>
+
+      <h4>2. Vấn đề về quyền sở hữu trí tuệ và trích dẫn</h4>
+      <p>Trong giới học thuật, sự minh bạch là tối thượng. Đoạn code, ý tưởng, hay đoạn văn do AI sinh ra không thuộc quyền sở hữu cá nhân của em.</p>
+      <ul>
+        <li>Nếu dùng AI để sinh ra một thuật toán phức tạp và mang đi nộp đồ án, việc không khai báo tương đương với <strong>đạo văn (Plagiarism)</strong>.</li>
+        <li>Trong thực tế, giới kỹ sư giải quyết việc này bằng cách comment rõ ràng trong mã nguồn. Ví dụ: <span class="highlight">// Khối logic xử lý concurrency này được gợi ý bởi GitHub Copilot và đã được tinh chỉnh lại.</span> Nó thể hiện sự chuyên nghiệp và tôn trọng chất xám.</li>
+      </ul>
+
+      <h4>3. Tác động đến quá trình học tập và phát triển kỹ năng</h4>
+      <p>Việc lạm dụng AI tạo ra một thế hệ "thợ gõ" có ảo giác về sự hiểu biết. Khi nhìn AI giải quyết bài tập hoặc sinh ra một đoạn code hoàn hảo trong 3 giây, não bộ tiết ra dopamine tạo cảm giác thỏa mãn y như tự mình làm được. Hậu quả là kỹ năng tư duy phản biện (Critical Thinking) và khả năng đối mặt với sự bế tắc (tố chất quan trọng nhất của lập trình viên) bị thui chột.</p>
+    </div>
+    <img src="../../assets/images/bai6/b67.png" alt="Minh họa Bước 1" class="step-img">
+
+    <div class="step">
+      <h3>III. Bộ nguyên tắc cá nhân: "Sử dụng AI có trách nhiệm"</h3>
+      <p>Để không biến thành "nô lệ" của công cụ, đây là bộ quy tắc thép trong suốt quá trình học tập và làm việc:</p>
+      <ul>
+        <li><strong>1. Luật 15 phút (The 15-Minute Struggle):</strong> Khi gặp một bug khó, bắt buộc phải tự suy nghĩ, tra cứu tài liệu chính thống, đọc file log hoặc vẽ nháp ít nhất 15 phút. Tuyệt đối không dùng AI ngay ở giây đầu tiên. Sự bế tắc chính là lúc não bộ đang "tập tạ" để tạo nếp nhăn.</li>
+        <li><strong>2. AI là Mentor, không phải Outsourcer:</strong> Chỉ dùng AI để giải thích khái niệm (Explain), gợi ý hướng đi (Hint), hoặc tối ưu hóa (Refactor). Không bao giờ dùng AI để làm thay toàn bộ công việc từ A-Z (Outsource).</li>
+        <li><strong>3. Hiểu tường tận trước khi Commit:</strong> Bất kỳ một dòng code nào copy từ AI vào project phải qua bộ lọc kiểm duyệt của não bộ. Nếu không thể tự tin giải thích từng biến, từng method cho người khác, dòng code đó không được đưa vào dự án.</li>
+        <li><strong>4. Hỏi ngược để thẩm định (Reverse Prompting):</strong> Thay vì bảo AI giải bài, hãy bảo nó đóng vai trò là người phỏng vấn. Ví dụ: <em>"Tôi vừa học về Spring Boot Security, hãy hỏi tôi 5 câu hỏi từ dễ đến khó để kiểm tra xem tôi có thực sự hiểu không"</em>.</li>
+        <li><strong>5. Minh bạch và Ghi công (Attribution):</strong> Rèn thói quen ghi chú nguồn gốc. Nếu một giải pháp kỹ thuật cốt lõi được AI gợi ý, hãy tự hào ghi chú nó vào file README hoặc comment trong code.</li>
+        <li><strong>6. Bảo mật thông tin tuyệt đối:</strong> Không bao giờ dán các thông tin nhạy cảm (mật khẩu database, mã định danh cá nhân, token đăng nhập, private key) vào cửa sổ chat của AI. Dữ liệu public có thể bị AI học lại và rò rỉ ra ngoài.</li>
+        <li><strong>7. Làm gương trong kỷ luật số:</strong> Việc sử dụng công nghệ một cách có kiểm soát, trung thực và trách nhiệm không chỉ định hình con đường học vấn của bản thân mà còn là bài học thực tế cho thế hệ sau.</li>
+      </ul>
+    </div>
+      
+  </div>
+  
+</body>
+</html>
