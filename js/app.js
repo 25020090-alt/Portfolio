@@ -11,13 +11,24 @@ class App {
   constructor() {
     this.router = new Router();
     this.modal = null;
+    this.particleSystem = null;
   }
 
   init() {
+    // Initialize tech effects first
+    this.initTechEffects();
+    
     this.router.onRouteChange = (route) => this.renderPage(route);
     this.initCursor();
     this.initNavbar();
     this.initModal();
+  }
+
+  /* ---- TECH EFFECTS ---- */
+  initTechEffects() {
+    if (typeof initTechEffects === 'function') {
+      this.particleSystem = window.initTechEffects();
+    }
   }
 
   /* ---- CUSTOM CURSOR ---- */
@@ -164,6 +175,11 @@ class App {
       });
     });
 
+    // Apply tech-enhanced class to cards for visual effects
+    document.querySelectorAll('.card').forEach(card => {
+      card.classList.add('tech-enhanced');
+    });
+
     // Skills bar animation
     const bars = document.querySelectorAll('.skill-fill');
     const skillsObs = new IntersectionObserver(entries => {
@@ -236,6 +252,7 @@ class App {
 
   bindProjectCards() {
     document.querySelectorAll('.project-card').forEach(card => {
+      card.classList.add('tech-enhanced');
       card.addEventListener('click', () => {
         const id = parseInt(card.dataset.id);
         const project = PROJECTS.find(p => p.id === id);
@@ -288,6 +305,15 @@ class App {
 
               <p>🏫 ${PROFILE.university}</p>
               <p>📚 ${PROFILE.faculty}</p>
+            </div>
+          </div>
+
+          <div class="reveal-right" style="grid-column: 1 / -1; margin-top: var(--space-2xl);">
+            <div class="introduction-section" style="background: var(--bg-glass); padding: var(--space-xl); border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.1);">
+              <h3 style="font-family:var(--font-heading); margin-bottom: var(--space-lg); color: var(--primary);">🌟 Lời giới thiệu</h3>
+              <div class="introduction-content" style="line-height: 1.8; color: var(--text-secondary); font-size: var(--fs-base);">
+                ${PROFILE.introduction ? PROFILE.introduction.split('\n\n').map(para => `<p style="margin-bottom: var(--space-md);">${para}</p>`).join('') : ''}
+              </div>
             </div>
           </div>
 
@@ -362,18 +388,102 @@ class App {
 
   renderSummary() {
     return `
+    <!-- Summary Cards Section - Top -->
     <section class="section">
       <div class="container">
-        <div style="text-align: center; margin-bottom: var(--space-3xl);">
+        <div style="text-align: center; margin-bottom: var(--space-2xl);">
           <h2 class="section-title reveal" style="margin-bottom: var(--space-sm);">Tổng kết <span class="text-gradient">hành trình</span></h2>
           <p class="section-desc reveal" style="margin: 0 auto; max-width: 600px;">Nhìn lại quá trình học tập, những trải nghiệm quý giá và bài học rút ra từ các bài tập thực hành.</p>
           <div class="reveal" style="width: 60px; height: 3px; background: var(--gradient-primary); margin: var(--space-lg) auto; border-radius: 3px;"></div>
-          <blockquote class="reveal" style="font-size: 1.2rem; font-style: italic; color: var(--text-secondary); max-width: 800px; margin: 0 auto;">
-            "Đầu tư vào tri thức luôn mang lại lợi nhuận cao nhất."<br>
-            <span style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-top: 0.5rem; display: block;">— Benjamin Franklin</span>
-          </blockquote>
         </div>
+        
+        <div class="summary-cards-grid">
+          <!-- Card 1: Trải Nghiệm Cá Nhân -->
+          <div class="summary-card reveal-scale" style="transition-delay: 100ms">
+            <div class="summary-card-icon">🌟</div>
+            <h3 class="summary-card-title">Trải Nghiệm Cá Nhân</h3>
+            <div class="summary-card-content">
+              <div class="summary-item">
+                <strong>Khám phá thế giới số:</strong>
+                <p>Từ người dùng bình thường trở thành người hiểu về cách thức hoạt động của công nghệ số - từ Internet, dữ liệu đến các hệ thống thông minh.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Lần đầu tiếp xúc AI:</strong>
+                <p>Cảm giác vừa tò mò vừa choáng ngợp khi nhận ra AI không còn là khoa học viễn tưởng mà đang hiện diện trong mọi khía cạnh cuộc sống.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Tư duy "số hóa":</strong>
+                <p>Hiểu được quá trình chuyển đổi từ thế giới thực sang thế giới số - từ thông tin, quy trình đến tương tác con người.</p>
+              </div>
+            </div>
+          </div>
 
+          <!-- Card 2: Kiến Thức Cốt Lõi -->
+          <div class="summary-card reveal-scale" style="transition-delay: 200ms">
+            <div class="summary-card-icon">🧠</div>
+            <h3 class="summary-card-title">Kiến Thức Cốt Lõi</h3>
+            <div class="summary-card-content">
+              <div class="summary-item">
+                <strong>Hiểu về Dữ liệu số:</strong>
+                <p>Cách thông tin được số hóa, lưu trữ, truyền tải và xử lý trong môi trường số. Big Data không còn là khái niệm xa lạ.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Nguyên lý AI & Machine Learning:</strong>
+                <p>Hiểu được cách máy tính "học" từ dữ liệu, từ các thuật toán đơn giản đến neural networks phức tạp.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Lập trình căn bản (30%):</strong>
+                <p>Nắm vững tư duy thuật toán, cấu trúc điều khiển và kỹ năng debug - nền tảng để hiện thực hóa ý tưởng số.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Điều Tâm Đắc -->
+          <div class="summary-card reveal-scale" style="transition-delay: 300ms">
+            <div class="summary-card-icon">💡</div>
+            <h3 class="summary-card-title">Điều Tâm Đắc</h3>
+            <div class="summary-card-content">
+              <div class="summary-item">
+                <strong>"Công nghệ là công cụ, con người là trung tâm":</strong>
+                <p>Nhận ra rằng công nghệ số và AI chỉ thực sự có giá trị khi giải quyết vấn đề thực tế và phục vụ con người.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Tư duy hệ thống:</strong>
+                <p>Không còn nhìn công nghệ như những mảnh rời rạc, mà thấy được bức tranh tổng thể về hệ sinh thái số kết nối.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Đạo đức số:</strong>
+                <p>Hiểu được trách nhiệm khi làm việc với dữ liệu và AI - từ bảo mật, riêng tư đến thiên kiến thuật toán.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Thách Thức -->
+          <div class="summary-card reveal-scale" style="transition-delay: 400ms">
+            <div class="summary-card-icon">🧗</div>
+            <h3 class="summary-card-title">Thách Thức</h3>
+            <div class="summary-card-content">
+              <div class="summary-item">
+                <strong>Tốc độ thay đổi chóng mặt:</strong>
+                <p>Công nghệ số và AI phát triển nhanh đến mức vừa học xong đã thấy có xu hướng mới xuất hiện.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Kiến thức liên ngành:</strong>
+                <p>Không chỉ cần hiểu công nghệ, mà còn phải am hiểu về kinh tế số, xã hội số, đạo đức AI và tác động con người.</p>
+              </div>
+              <div class="summary-item">
+                <strong>Từ lý thuyết đến thực tế:</strong>
+                <p>Khó khăn trong việc áp dụng các khái niệm trừu tượng về AI và chuyển đổi số vào các tình huống thực tế.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats & Quote Section - Bottom -->
+    <section class="section">
+      <div class="container">
         <div class="stats-strip">
           <div class="stat-item reveal">
             <div class="stat-number" data-target="6">0</div>
@@ -398,6 +508,11 @@ class App {
             <div class="stat-label">Động lực phát triển</div>
           </div>
         </div>
+        
+        <blockquote class="reveal" style="font-size: 1.2rem; font-style: italic; color: var(--text-secondary); max-width: 800px; margin: var(--space-3xl) auto 0;">
+          "Đầu tư vào tri thức luôn mang lại lợi nhuận cao nhất."<br>
+          <span style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-top: 0.5rem; display: block;">— Benjamin Franklin</span>
+        </blockquote>
       </div>
     </section>
     

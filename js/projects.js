@@ -118,6 +118,7 @@ const PROFILE = {
   // (nhớ tạo thư mục images và bỏ ảnh avatar.jpg vào đó)
   avatar: '<img src="assets/images/bai6/avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%">',                      // ✏️ Emoji avatar hoặc thẻ <img>
   bio: 'Sinh viên năm nhất ngành Công nghệ Thông tin. Đam mê khám phá công nghệ số và ứng dụng trí tuệ nhân tạo vào cuộc sống.',
+  introduction: 'Em là sinh viên ngành Công nghệ Thông tin tại Trường Đại học Công nghệ (UET) – Đại học Quốc gia Hà Nội, với định hướng phát triển trong các lĩnh vực Trí tuệ Nhân tạo (Artificial Intelligence), Tối ưu hóa Hệ thống (System Optimization) và Chuyển đổi số (Digital Transformation).\n\nPortfolio này được xây dựng nhằm ghi lại hành trình học tập, nghiên cứu và phát triển kỹ năng công nghệ của em trong suốt quá trình đào tạo. Đây không chỉ là nơi tổng hợp các kiến thức và dự án liên quan đến quản lý dữ liệu, tìm kiếm và khai thác thông tin khoa học, kỹ thuật Prompt Engineering, cũng như ứng dụng các công nghệ AI tạo sinh, mà còn phản ánh quá trình rèn luyện tư duy phân tích, khả năng tự học và giải quyết vấn đề.\n\nThông qua các sản phẩm và nội dung được trình bày, em mong muốn thể hiện tinh thần học hỏi không ngừng, năng lực ứng dụng công nghệ vào thực tiễn, cùng cam kết sử dụng trí tuệ nhân tạo một cách có trách nhiệm, minh bạch và tuân thủ các nguyên tắc về đạo đức cũng như liêm chính học thuật (Academic Integrity).',
   university: 'Trường Đại Học Công Nghệ-ĐHQG Hà Nội',   // ✏️ Tên trường
   faculty: 'Khoa Công nghệ Thông tin' // ✏️ Tên khoa
 };
