@@ -11,8 +11,6 @@
 const ROUTES = {
   '':         'home',
   'home':     'home',
-  'summary':  'summary',
-  'projects': 'projects',
   'contact':  'contact'
   // ✏️ Thêm route mới: 'ten-trang': 'ten-trang'
 };

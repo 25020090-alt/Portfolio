@@ -23,6 +23,13 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/pages.css" />
+
+  <!-- Inline script to set dark mode -->
+  <script>
+    (function() {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
 </head>
 
 <body>
@@ -51,18 +58,11 @@
     </button>
 
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home" class="nav-link active" id="nav-home">Trang chủ</a></li>
-      <li><a href="#projects" class="nav-link" id="nav-projects">Bài tập-Quá Trình</a></li>
-      <li><a href="#summary" class="nav-link" id="nav-summary">Tổng kết</a></li>
+      <li><a href="#home" class="nav-link active" id="nav-home">Portfolio</a></li>
 
       <!-- ✏️ Thêm trang mới: <li><a href="#ten-trang" class="nav-link">Tên trang</a></li> -->
     </ul>
 
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Chuyển đổi chế độ sáng/tối" title="Chuyển đổi chế độ">
-      <span class="theme-icon-dark">🌙</span>
-      <span class="theme-icon-light">☀️</span>
-    </button>
   </nav>
 
   <!-- SPA Content -->

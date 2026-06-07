@@ -27,51 +27,17 @@ class App {
     this.initModal();
   }
 
-  /* ---- THEME TOGGLE ---- */
+  /* ---- THEME ---- */
   initTheme() {
-    // Check saved theme or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (systemDark ? 'dark' : 'light');
+    // Dark mode only - no toggle
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.body.style.setProperty('--circuit-opacity', '0.05');
     
-    this.setTheme(theme);
-    
-    // Bind toggle button
-    const toggleBtn = document.getElementById('themeToggle');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => this.toggleTheme());
-    }
-    
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        this.setTheme(e.matches ? 'dark' : 'light');
-      }
-    });
-  }
-
-  setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    
-    // Update particle opacity for light mode
+    // Set particle opacity for dark mode
     const particleCanvas = document.querySelector('canvas');
     if (particleCanvas) {
-      particleCanvas.style.opacity = theme === 'light' ? '0.3' : '0.6';
+      particleCanvas.style.opacity = '0.6';
     }
-    
-    // Update circuit pattern opacity for light mode
-    if (theme === 'light') {
-      document.body.style.setProperty('--circuit-opacity', '0.02');
-    } else {
-      document.body.style.setProperty('--circuit-opacity', '0.05');
-    }
-  }
-
-  toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    this.setTheme(newTheme);
   }
 
   /* ---- TECH EFFECTS ---- */
@@ -183,8 +149,6 @@ class App {
     const app = document.getElementById('app');
     switch (route) {
       case 'home': app.innerHTML = this.renderHome(); break;
-      case 'summary': app.innerHTML = this.renderSummary(); break;
-      case 'projects': app.innerHTML = this.renderProjects(); break;
       default: app.innerHTML = this.renderHome();
     }
     this.initScrollReveal();
@@ -209,22 +173,9 @@ class App {
   /* ---- PAGE INTERACTIONS ---- */
   initPageInteractions(route) {
     if (route === 'home') this.initHomeInteractions();
-    if (route === 'summary') this.initSummaryInteractions();
-    if (route === 'projects') this.initProjectsInteractions();
   }
 
   initHomeInteractions() {
-    // Preview cards click — open modal in same tab
-    document.querySelectorAll('.preview-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const id = parseInt(card.dataset.id);
-        const project = PROJECTS.find(p => p.id === id);
-        if (project) {
-          this.openModal(project);
-        }
-      });
-    });
-
     // Apply tech-enhanced class to cards for visual effects
     document.querySelectorAll('.card').forEach(card => {
       card.classList.add('tech-enhanced');
@@ -253,7 +204,35 @@ class App {
         }
       });
     }
+
+    // Project cards click — open modal
+    this.bindProjectCards();
+
+    // Filter buttons
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.category;
+        const filtered = cat === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === cat);
+        const grid = document.querySelector('.projects-grid');
+        if (grid) {
+          grid.innerHTML = filtered.map(p => this.projectCard(p)).join('');
+          this.bindProjectCards();
+          // Re-trigger reveal
+          grid.querySelectorAll('.reveal-scale').forEach(el => {
+            el.classList.remove('visible');
+            requestAnimationFrame(() => el.classList.add('visible'));
+          });
+        }
+      });
+    });
+
+    // Animated counters for summary
+    this.initSummaryInteractions();
   }
+
   initSummaryInteractions() {
     // Animated counters
     const counters = document.querySelectorAll('.stat-number');
@@ -277,29 +256,6 @@ class App {
     });
   }
 
-  initProjectsInteractions() {
-    const grid = document.querySelector('.projects-grid');
-    const btns = document.querySelectorAll('.filter-btn');
-
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const cat = btn.dataset.category;
-        const filtered = cat === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === cat);
-        grid.innerHTML = filtered.map(p => this.projectCard(p)).join('');
-        this.bindProjectCards();
-        // Re-trigger reveal
-        grid.querySelectorAll('.reveal-scale').forEach(el => {
-          el.classList.remove('visible');
-          requestAnimationFrame(() => el.classList.add('visible'));
-        });
-      });
-    });
-
-    this.bindProjectCards();
-  }
-
   bindProjectCards() {
     document.querySelectorAll('.project-card').forEach(card => {
       card.classList.add('tech-enhanced');
@@ -318,7 +274,6 @@ class App {
      ============================================ */
 
   renderHome() {
-    const previewProjects = PROJECTS.slice(0, 3);
     return `
     <section class="hero">
       <div class="container hero-content">
@@ -329,7 +284,7 @@ class App {
         </h1>
         <p class="hero-subtitle reveal">${PROFILE.bio}</p>
         <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">Xem bài tập →</a>
+          <a href="#projects-section" class="btn btn-primary">Xem bài tập →</a>
           <a href="#about" class="btn btn-outline">Về Sinh Viên</a>
         </div>
       </div>
@@ -340,6 +295,7 @@ class App {
       </div>
     </section>
 
+    <!-- Giới thiệu bản thân -->
     <section class="section" id="about">
       <div class="container">
         <div class="section-label reveal">About Me</div>
@@ -386,6 +342,7 @@ class App {
       </div>
     </section>
 
+    <!-- Hành trình học tập -->
     <section class="section">
       <div class="container">
         <div class="section-label reveal">Journey</div>
@@ -401,6 +358,7 @@ class App {
       </div>
     </section>
 
+    <!-- Mục tiêu -->
     <section class="section">
       <div class="container">
         <div class="section-label reveal">Goals</div>
@@ -416,32 +374,30 @@ class App {
       </div>
     </section>
 
-    <section class="section">
+    <!-- Bài tập quá trình -->
+    <section class="section" id="projects-section">
       <div class="container">
-        <div class="section-label reveal">Featured</div>
-        <h2 class="section-title reveal">Bài tập <span class="text-gradient">nổi bật</span></h2>
-        <p class="section-desc reveal">Một số bài tập tiêu biểu trong quá trình học tập.</p>
-        <div class="preview-grid" style="margin-top:var(--space-2xl)">
-          ${previewProjects.map((p, i) => `
-          <div class="card preview-card reveal-scale" data-id="${p.id}" style="transition-delay:${i * 100}ms">
-            <div class="card-number">0${p.id}</div>
-            <h3>${p.title}</h3>
-            <p>${p.description}</p>
-            <span class="card-arrow">→</span>
-          </div>`).join('')}
+        <div class="section-label reveal">Projects</div>
+        <h2 class="section-title reveal">Bài tập <span class="text-gradient">thực hành</span></h2>
+        <p class="section-desc reveal">Tổng hợp ${PROJECTS.length} bài tập trong môn ${COURSE.name}.</p>
+
+        <div class="filter-bar reveal" style="margin-top:var(--space-2xl)">
+          ${Object.entries(CATEGORIES).map(([key, label], i) => `
+            <button class="filter-btn${i === 0 ? ' active' : ''}" data-category="${key}">${label}</button>
+          `).join('')}
+        </div>
+
+        <div class="projects-grid">
+          ${PROJECTS.map(p => this.projectCard(p)).join('')}
         </div>
       </div>
     </section>
 
-    ${this.renderFooter()}`;
-  }
-
-  renderSummary() {
-    return `
-    <!-- Summary Cards Section - Top -->
-    <section class="section">
+    <!-- Tổng kết -->
+    <section class="section" id="summary-section">
       <div class="container">
         <div style="text-align: center; margin-bottom: var(--space-2xl);">
+          <div class="section-label reveal">Reflection</div>
           <h2 class="section-title reveal" style="margin-bottom: var(--space-sm);">Tổng kết <span class="text-gradient">hành trình</span></h2>
           <p class="section-desc reveal" style="margin: 0 auto; max-width: 600px;">Nhìn lại quá trình học tập, những trải nghiệm quý giá và bài học rút ra từ các bài tập thực hành.</p>
           <div class="reveal" style="width: 60px; height: 3px; background: var(--gradient-primary); margin: var(--space-lg) auto; border-radius: 3px;"></div>
@@ -531,7 +487,7 @@ class App {
       </div>
     </section>
 
-    <!-- Stats & Quote Section - Bottom -->
+    <!-- Stats & Quote Section -->
     <section class="section">
       <div class="container">
         <div class="stats-strip">
@@ -586,29 +542,6 @@ class App {
         <span class="card-open">${hasLink ? 'Mở bài tập ↗' : 'Chưa có link'}</span>
       </div>
     </div>`;
-  }
-
-  renderProjects() {
-    return `
-    <section class="section">
-      <div class="container">
-        <div class="section-label reveal">Projects</div>
-        <h2 class="section-title reveal">Bài tập <span class="text-gradient">thực hành</span></h2>
-        <p class="section-desc reveal">Tổng hợp 6 bài tập trong môn ${COURSE.name}.</p>
-
-        <div class="filter-bar reveal" style="margin-top:var(--space-2xl)">
-          ${Object.entries(CATEGORIES).map(([key, label], i) => `
-            <button class="filter-btn${i === 0 ? ' active' : ''}" data-category="${key}">${label}</button>
-          `).join('')}
-        </div>
-
-        <div class="projects-grid">
-          ${PROJECTS.map(p => this.projectCard(p)).join('')}
-        </div>
-      </div>
-    </section>
-
-    ${this.renderFooter()}`;
   }
 
   renderFooter() {
