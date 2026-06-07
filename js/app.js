@@ -120,7 +120,7 @@ class App {
       } else if (project.type === 'external') {
         body.innerHTML = `
           <div class="modal-info" style="text-align:center;padding-top:60px;">
-            <p style="font-size:1.2rem;margin-bottom:24px;color:var(--text-secondary);">Bài tập này được lưu trữ bên ngoài.</p>
+            <p style="font-size:1.2rem;margin-bottom:24px;color:var(--text-secondary);">Bài tập this được lưu trữ bên ngoài.</p>
             <a href="${project.url}" target="_blank" rel="noopener" class="external-link-btn">
               📄 Link bài tập
             </a>
@@ -153,6 +153,7 @@ class App {
     }
     this.initScrollReveal();
     this.initPageInteractions(route);
+    this.initScrollSpy();
   }
 
   /* ---- SCROLL REVEAL ---- */
@@ -168,6 +169,48 @@ class App {
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     els.forEach(el => observer.observe(el));
+  }
+
+  /* ---- SCROLL SPY ---- */
+  initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
   }
 
   /* ---- PAGE INTERACTIONS ---- */
@@ -204,6 +247,17 @@ class App {
         }
       });
     }
+
+    // Preview cards click — open modal in same tab
+    document.querySelectorAll('.preview-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = parseInt(card.dataset.id);
+        const project = PROJECTS.find(p => p.id === id);
+        if (project) {
+          this.openModal(project);
+        }
+      });
+    });
 
     // Project cards click — open modal
     this.bindProjectCards();
@@ -274,8 +328,10 @@ class App {
      ============================================ */
 
   renderHome() {
+    const previewProjects = PROJECTS.slice(0, 3);
     return `
-    <section class="hero">
+    <!-- Trang chủ / Hero section -->
+    <section class="hero" id="home-section">
       <div class="container hero-content">
         <div class="hero-badge reveal"><span class="dot"></span> Portfolio ${COURSE.semester}</div>
         <h1 class="hero-title reveal">
@@ -343,7 +399,7 @@ class App {
     </section>
 
     <!-- Hành trình học tập -->
-    <section class="section">
+    <section class="section" id="journey">
       <div class="container">
         <div class="section-label reveal">Journey</div>
         <h2 class="section-title reveal">Hành trình <span class="text-gradient">học tập</span></h2>
@@ -359,7 +415,7 @@ class App {
     </section>
 
     <!-- Mục tiêu -->
-    <section class="section">
+    <section class="section" id="goals">
       <div class="container">
         <div class="section-label reveal">Goals</div>
         <h2 class="section-title reveal">Mục tiêu <span class="text-gradient">portfolio</span></h2>
@@ -369,6 +425,24 @@ class App {
             <div class="goal-icon">${g.icon}</div>
             <h3>${g.title}</h3>
             <p>${g.desc}</p>
+          </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- Bài tập nổi bật -->
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-label reveal">Featured</div>
+        <h2 class="section-title reveal">Bài tập <span class="text-gradient">nổi bật</span></h2>
+        <p class="section-desc reveal">Một số bài tập tiêu biểu trong quá trình học tập.</p>
+        <div class="preview-grid" style="margin-top:var(--space-2xl)">
+          ${previewProjects.map((p, i) => `
+          <div class="card preview-card reveal-scale" data-id="${p.id}" style="transition-delay:${i * 100}ms">
+            <div class="card-number">0${p.id}</div>
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+            <span class="card-arrow">→</span>
           </div>`).join('')}
         </div>
       </div>
@@ -488,7 +562,7 @@ class App {
     </section>
 
     <!-- Stats & Quote Section -->
-    <section class="section">
+    <section class="section" id="stats">
       <div class="container">
         <div class="stats-strip">
           <div class="stat-item reveal">
