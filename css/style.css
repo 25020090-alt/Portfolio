@@ -362,6 +362,9 @@ input, textarea { font: inherit; color: inherit; }
 .nav-links {
   display: flex;
   gap: var(--space-xs);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .nav-link {
   padding: var(--space-sm) var(--space-md);
